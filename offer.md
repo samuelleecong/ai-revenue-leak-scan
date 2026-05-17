@@ -1,20 +1,19 @@
-# AI Revenue Leak Scan
+# SaaS Revenue Leak Checklist
 
-Payment link: https://buy.stripe.com/eVqdRbd7A1lwcN2dUS33W0b
+Payment link: https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c
 
-Price: $0.50 USD micro snapshot
+Price: $0.50 USD instant download
 
 What the buyer gets:
 
-- A manual AI-assisted review of one landing page, checkout flow, or email funnel.
-- Three specific revenue leaks ranked by likely impact.
-- One copy, offer, or UX fix for each leak.
-- Delivery by email within 24 hours.
-- Refund if the scan does not include at least three actionable findings.
+- A compact SaaS revenue leak checklist.
+- First-screen, proof, paid-trigger, trust, and outreach sections.
+- Copy formulas and a 10-minute rewrite order.
+- Automatic delivery after Stripe checkout.
 
 Buyer intake:
 
-Enter the URL and context during Stripe checkout, or send the URL, target customer, current offer, and the conversion goal to revenueleakscan@agentmail.to after checkout.
+No intake is needed. Stripe shows the download link after payment.
 
 Sample deliverable:
 
