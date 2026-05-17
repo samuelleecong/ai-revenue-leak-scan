@@ -403,6 +403,93 @@
         color: #fff;
       }
 
+      .tool-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .check-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      .check-item {
+        display: grid;
+        grid-template-columns: 22px minmax(0, 1fr);
+        gap: 10px;
+        align-items: start;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px;
+        background: #fff;
+      }
+
+      .check-item input {
+        width: 18px;
+        min-height: 18px;
+        margin: 2px 0 0;
+        accent-color: var(--green);
+      }
+
+      .check-item span {
+        display: block;
+        font-weight: 800;
+      }
+
+      .check-item small {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .score-card {
+        display: flex;
+        min-height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 18px;
+        border-radius: 8px;
+        background: var(--ink);
+        color: #fff;
+        padding: 22px;
+      }
+
+      .score-number {
+        font-size: 56px;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .score-card p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.55;
+      }
+
+      .score-meter {
+        height: 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.18);
+        overflow: hidden;
+      }
+
+      .score-meter span {
+        display: block;
+        height: 100%;
+        width: 0%;
+        border-radius: inherit;
+        background: var(--amber);
+        transition: width 180ms ease;
+      }
+
+      .score-card .button {
+        width: 100%;
+        box-shadow: none;
+      }
+
       footer {
         padding: 26px 0 40px;
         color: var(--muted);
@@ -411,7 +498,8 @@
 
       @media (max-width: 840px) {
         .hero-grid,
-        .intake {
+        .intake,
+        .tool-panel {
           grid-template-columns: 1fr;
         }
 
@@ -438,7 +526,7 @@
       <div class="wrap nav">
         <div class="brand"><span class="mark">RL</span><span>SaaS Revenue Leak Checklist</span></div>
         <div class="nav-actions">
-          <span class="pill">Delivered in 24 hours</span>
+          <span class="pill">Instant delivery</span>
           <a class="button" href="https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c">Buy for $0.50</a>
         </div>
       </div>
@@ -454,6 +542,7 @@
             <div class="hero-actions">
               <a class="button" href="https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c">Pay $0.50 with Stripe</a>
               <a class="button secondary" href="instant-checklist-preview.md">Preview checklist</a>
+              <a class="button secondary" href="#scorecard">Run free scorecard</a>
               <div class="price"><strong>$0.50</strong><span>USD instant download</span></div>
             </div>
             <div class="trust">
@@ -520,6 +609,46 @@
         </div>
       </section>
 
+      <section class="section" id="scorecard">
+        <div class="wrap tool-panel">
+          <div>
+            <h2>Run the free leak scorecard</h2>
+            <p class="note">Check the conversion basics you already have live. The paid checklist gives the rewrite order and copy formulas for fixing the missing items.</p>
+            <div class="check-grid" aria-label="Revenue leak scorecard">
+              <label class="check-item">
+                <input type="checkbox" data-score-item checked>
+                <span>Specific buyer named<small>The first screen says exactly who should buy or use the offer.</small></span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" data-score-item>
+                <span>Paid outcome stated<small>The page promises a result someone would plausibly pay for now.</small></span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" data-score-item>
+                <span>Proof before checkout<small>A result, example, testimonial, or screenshot appears before payment.</small></span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" data-score-item checked>
+                <span>Checkout scope clear<small>The buyer knows what is included before opening Stripe.</small></span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" data-score-item>
+                <span>Trust friction handled<small>Refund, delivery, ownership, or support expectations are visible.</small></span>
+              </label>
+            </div>
+          </div>
+          <aside class="score-card" aria-live="polite">
+            <div>
+              <p>Current leak score</p>
+              <div class="score-number"><span id="scoreValue">40</span>/100</div>
+            </div>
+            <div class="score-meter" aria-hidden="true"><span id="scoreBar"></span></div>
+            <p id="scoreAdvice">Two basics are covered. Buy the checklist to prioritize the missing proof, paid-outcome, and trust fixes.</p>
+            <a class="button" href="https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c">Get the $0.50 checklist</a>
+          </aside>
+        </div>
+      </section>
+
       <section class="section">
         <div class="wrap intake">
           <div>
@@ -554,5 +683,28 @@
       <div class="wrap">Lightweight growth review only. Not legal, financial, tax, medical, investment, or compliance advice.</div>
     </footer>
 
+    <script>
+      const scoreItems = Array.from(document.querySelectorAll("[data-score-item]"));
+      const scoreValue = document.getElementById("scoreValue");
+      const scoreBar = document.getElementById("scoreBar");
+      const scoreAdvice = document.getElementById("scoreAdvice");
+
+      function updateScore() {
+        const checked = scoreItems.filter((item) => item.checked).length;
+        const score = Math.round((checked / scoreItems.length) * 100);
+        scoreValue.textContent = score;
+        scoreBar.style.width = `${score}%`;
+        scoreBar.style.background = score >= 80 ? "var(--green)" : score >= 50 ? "var(--amber)" : "var(--coral)";
+        scoreAdvice.textContent =
+          score >= 80
+            ? "Most basics are covered. Use the checklist to tighten copy order and checkout confidence."
+            : score >= 50
+              ? "Some revenue basics are present. The checklist focuses your next rewrite on the gaps most likely to block payment."
+              : "Several first-dollar basics are missing. Buy the checklist to repair proof, scope, trust, and the paid trigger first.";
+      }
+
+      scoreItems.forEach((item) => item.addEventListener("change", updateScore));
+      updateScore();
+    </script>
   </body>
 </html>
