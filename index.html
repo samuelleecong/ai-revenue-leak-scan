@@ -502,6 +502,16 @@
         margin-bottom: 6px;
       }
 
+      .delivery-proof {
+        border-left: 3px solid var(--amber);
+        padding-left: 12px;
+      }
+
+      .delivery-proof strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
       .score-actions {
         display: grid;
         gap: 10px;
@@ -681,6 +691,10 @@
             <div class="score-missing">
               <strong>Missing fixes</strong>
               <p id="scoreMissing">Paid outcome, proof before checkout, trust friction.</p>
+            </div>
+            <div class="delivery-proof">
+              <strong>After Stripe</strong>
+              <p>The confirmation page shows the full checklist download link immediately. If delivery fails, email revenueleakscan@agentmail.to.</p>
             </div>
             <div class="score-actions">
               <button class="copy-button" id="copyScore" type="button">Copy my score</button>
