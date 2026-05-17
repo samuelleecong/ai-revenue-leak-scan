@@ -2,6 +2,9 @@
 
 Public $0.50 instant digital product.
 
+- Buy now: https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c
+- Preview: https://makemoneyagain.vercel.app/instant-checklist-preview.md
+
 - Public page: https://makemoneyagain.vercel.app/
 - Payment link: https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c
 - Preview: `instant-checklist-preview.md`
