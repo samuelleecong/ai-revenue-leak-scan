@@ -15,9 +15,9 @@ Buyer intake:
 
 No intake is needed. Stripe shows the download link after payment.
 
-Sample deliverable:
+Preview:
 
-See `sample-scan.md`.
+See `instant-checklist-preview.md`.
 
 Scope:
 

@@ -4,8 +4,8 @@ Public $0.50 instant digital product.
 
 - Public page: https://makemoneyagain.vercel.app/
 - Payment link: https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c
-- Sample deliverable: `sample-scan.md`
+- Preview: `instant-checklist-preview.md`
 
 Buy a compact checklist for finding landing-page, checkout, and cold outreach revenue leaks.
 
-Refund promise: refunded if the snapshot cannot produce three concrete fixes.
+Delivery: Stripe shows the full checklist download link immediately after payment.
