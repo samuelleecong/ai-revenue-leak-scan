@@ -513,22 +513,27 @@
       <section class="section">
         <div class="wrap intake">
           <div>
-            <h2>Prepare your intake email</h2>
-            <p class="note">The checklist is delivered instantly through Stripe. Use this helper only if you later want to request a custom scan.</p>
-            <div class="field">
-              <label for="url">URL or funnel asset</label>
-              <input id="url" placeholder="https://example.com/landing-page">
+            <h2>Inside the checklist</h2>
+            <p class="note">No intake email is required. The Stripe confirmation page shows the download link immediately after payment.</p>
+            <div class="findings">
+              <div class="finding">
+                <strong>First-screen rewrite</strong>
+                <p>Name one buyer, one paid outcome, and one objection to remove before the first CTA.</p>
+              </div>
+              <div class="finding">
+                <strong>Proof-before-payment audit</strong>
+                <p>Move examples, outputs, safety claims, or before/after proof above checkout moments.</p>
+              </div>
+              <div class="finding">
+                <strong>Paid-trigger formulas</strong>
+                <p>Use small one-time offers and urgency prompts that prove someone will exchange money for the outcome.</p>
+              </div>
             </div>
-            <div class="field">
-              <label for="context">Audience, offer, and goal</label>
-              <textarea id="context" placeholder="Audience: early-stage SaaS founders. Offer: $49 template pack. Goal: increase checkout starts."></textarea>
-            </div>
-            <button class="button" type="button" id="emailButton">Open intake email</button>
           </div>
           <aside class="summary">
-            <p><strong>Scope:</strong> one page, checkout flow, or email funnel.</p>
-            <p><strong>Delivery:</strong> concise email with three revenue leaks and fixes.</p>
-            <p><strong>Refund promise:</strong> refund if the scan cannot produce three actionable findings.</p>
+            <p><strong>Format:</strong> markdown checklist delivered after payment.</p>
+            <p><strong>Use it for:</strong> one landing page, checkout flow, or cold outreach path.</p>
+            <p><strong>Includes:</strong> copy formulas, trust checks, paid-trigger prompts, and a 10-minute rewrite order.</p>
             <p><a href="https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c">Pay $0.50 now</a></p>
           </aside>
         </div>
@@ -539,26 +544,5 @@
       <div class="wrap">Lightweight growth review only. Not legal, financial, tax, medical, investment, or compliance advice.</div>
     </footer>
 
-    <script>
-      const emailButton = document.querySelector("#emailButton");
-      const targetEmail = "revenueleakscan@agentmail.to";
-      emailButton.addEventListener("click", () => {
-        const url = document.querySelector("#url").value.trim();
-        const context = document.querySelector("#context").value.trim();
-        const subject = encodeURIComponent("AI Revenue Leak Scan intake");
-        const body = encodeURIComponent([
-          "Hi,",
-          "",
-          "I paid for the AI Revenue Leak Scan.",
-          "",
-          `URL or funnel asset: ${url || "[paste URL or describe asset]"}`,
-          "",
-          `Audience, offer, and goal: ${context || "[add context]"}`,
-          "",
-          "Stripe checkout email: [email used at checkout]",
-        ].join("\n"));
-        window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
-      });
-    </script>
   </body>
 </html>
