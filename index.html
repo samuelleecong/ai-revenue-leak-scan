@@ -490,6 +490,40 @@
         box-shadow: none;
       }
 
+      .score-missing {
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 8px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .score-missing strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .score-actions {
+        display: grid;
+        gap: 10px;
+      }
+
+      .copy-button {
+        min-height: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 8px;
+        background: transparent;
+        color: #fff;
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .copy-status {
+        min-height: 18px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 13px;
+      }
+
       footer {
         padding: 26px 0 40px;
         color: var(--muted);
@@ -644,7 +678,15 @@
             </div>
             <div class="score-meter" aria-hidden="true"><span id="scoreBar"></span></div>
             <p id="scoreAdvice">Two basics are covered. Buy the checklist to prioritize the missing proof, paid-outcome, and trust fixes.</p>
-            <a class="button" href="https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c">Get the $0.50 checklist</a>
+            <div class="score-missing">
+              <strong>Missing fixes</strong>
+              <p id="scoreMissing">Paid outcome, proof before checkout, trust friction.</p>
+            </div>
+            <div class="score-actions">
+              <button class="copy-button" id="copyScore" type="button">Copy my score</button>
+              <span class="copy-status" id="copyStatus"></span>
+              <a class="button" href="https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c">Unlock fixes for this score</a>
+            </div>
           </aside>
         </div>
       </section>
@@ -688,13 +730,21 @@
       const scoreValue = document.getElementById("scoreValue");
       const scoreBar = document.getElementById("scoreBar");
       const scoreAdvice = document.getElementById("scoreAdvice");
+      const scoreMissing = document.getElementById("scoreMissing");
+      const copyScore = document.getElementById("copyScore");
+      const copyStatus = document.getElementById("copyStatus");
 
       function updateScore() {
         const checked = scoreItems.filter((item) => item.checked).length;
         const score = Math.round((checked / scoreItems.length) * 100);
+        const missing = scoreItems
+          .filter((item) => !item.checked)
+          .map((item) => item.closest(".check-item").querySelector("span").childNodes[0].textContent.trim());
+
         scoreValue.textContent = score;
         scoreBar.style.width = `${score}%`;
         scoreBar.style.background = score >= 80 ? "var(--green)" : score >= 50 ? "var(--amber)" : "var(--coral)";
+        scoreMissing.textContent = missing.length ? missing.join(", ") + "." : "No basics missing. Use the checklist for copy order and checkout confidence.";
         scoreAdvice.textContent =
           score >= 80
             ? "Most basics are covered. Use the checklist to tighten copy order and checkout confidence."
@@ -704,6 +754,15 @@
       }
 
       scoreItems.forEach((item) => item.addEventListener("change", updateScore));
+      copyScore.addEventListener("click", async () => {
+        const text = `Revenue leak score: ${scoreValue.textContent}/100. Missing fixes: ${scoreMissing.textContent} Checklist: https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c`;
+        try {
+          await navigator.clipboard.writeText(text);
+          copyStatus.textContent = "Copied score and checkout link.";
+        } catch {
+          copyStatus.textContent = text;
+        }
+      });
       updateScore();
     </script>
   </body>
