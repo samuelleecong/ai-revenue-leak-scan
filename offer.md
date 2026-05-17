@@ -1,8 +1,8 @@
 # AI Revenue Leak Scan
 
-Payment link: https://buy.stripe.com/eVq14pffI3tE8wMcQO33W0a
+Payment link: https://buy.stripe.com/eVqdRbd7A1lwcN2dUS33W0b
 
-Price: $1 USD first-dollar snapshot
+Price: $0.50 USD micro snapshot
 
 What the buyer gets:
 
