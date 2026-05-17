@@ -2,6 +2,7 @@
 
 Public $0.50 instant digital product.
 
+- Run the free scorecard: https://makemoneyagain.vercel.app/#scorecard
 - Buy now: https://buy.stripe.com/14A6oJ7Ng2pAeVa04233W0c
 - Preview: https://makemoneyagain.vercel.app/instant-checklist-preview.md
 
